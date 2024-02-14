@@ -1,0 +1,3 @@
+/Users/alexsmacbookpro/Desktop/Database/Homework-2/In-Progress/cmake-build-debug/CMakeFiles/cpp.dir
+/Users/alexsmacbookpro/Desktop/Database/Homework-2/In-Progress/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/alexsmacbookpro/Desktop/Database/Homework-2/In-Progress/cmake-build-debug/CMakeFiles/rebuild_cache.dir
