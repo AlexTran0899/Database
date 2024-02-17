@@ -4,10 +4,10 @@
 
 #include "../Include/TravelerInfo.h"
 #include <sstream>
+#include <fstream>
+#include "../Utils/Utils.h"
 
-TravelerInfo::TravelerInfo() {
-
-}
+TravelerInfo::TravelerInfo() {}
 
 TravelerInfo::TravelerInfo(int passengerId, const std::string &firstName, const std::string &lastName, int age,
                            const std::string &ticketNum, double fare, const std::string &dateOfPurchase)
@@ -15,16 +15,53 @@ TravelerInfo::TravelerInfo(int passengerId, const std::string &firstName, const 
           ticketNum(ticketNum), fare(fare), dateOfPurchase(dateOfPurchase) {
 }
 
-TravelerInfo::~TravelerInfo(){
-    std::cout << "calling the TravelerInfo destructor" << std::endl;
+TravelerInfo::~TravelerInfo() {
+    std::cout << "In TravelerInfo Destructor" << std::endl;
 }
 
 void TravelerInfo::marshal(std::ofstream &out, bool isBlankRecord) const {
+    if (isBlankRecord) {
+        out << std::right << std::setw(99) << std::setfill('0') << "-1" << std::endl;
+        return;
+    }
 
+    out << std::setw(9) << std::left << passengerId
+        << std::setw(20) << std::left << Utils::replaceSpacesWithUnderScore(firstName)
+        << std::setw(20) << std::left << Utils::replaceSpacesWithUnderScore(lastName)
+        << std::setw(10) << std::left << age
+        << std::setw(20) << std::left << Utils::replaceSpacesWithUnderScore(ticketNum)
+        << std::setw(10) << std::fixed << std::setprecision(2) << std::left << fare
+        << std::setw(10) << std::left << dateOfPurchase << std::endl;
+}
+
+void TravelerInfo::unmarshal(const std::string &line) {
+    std::istringstream stream(line);
+    std::string temp;
+
+    stream >> temp;
+    this->passengerId = stoi(temp);
+
+    stream >> temp;
+    firstName = Utils::replaceUnderScoreWithSpaces(temp);
+
+    stream >> temp;
+    lastName = Utils::replaceUnderScoreWithSpaces(temp);
+
+    stream >> temp;
+    age = std::stoi(temp);
+
+    stream >> temp;
+    ticketNum = Utils::replaceUnderScoreWithSpaces(temp);
+
+    stream >> temp;
+    fare = std::stod(temp);
+
+    stream >> temp;
+    dateOfPurchase = Utils::replaceUnderScoreWithSpaces(temp);
 }
 
 void TravelerInfo::parseString(const std::string &line) {
-    try{
+    try {
         std::istringstream stream(line);
 
         std::string passengerId;
@@ -45,12 +82,17 @@ void TravelerInfo::parseString(const std::string &line) {
         this->fare = stod(fare);
 
         getline(stream, this->dateOfPurchase, ',');
-    } catch(std::exception e) {
+    } catch (std::exception e) {
         std::cerr << "Error parsing passenger info" << std::endl;
     }
 }
 
-
 void TravelerInfo::print() const {
-
+    std::cout << std::setw(10) << std::left << passengerId
+              << std::setw(20) << std::left << firstName
+              << std::setw(20) << std::left << lastName
+              << std::setw(10) << std::left << age
+              << std::setw(20) << std::left << ticketNum
+              << std::setw(10) << std::fixed << std::setprecision(2) << std::left << fare
+              << std::setw(10) << std::left << dateOfPurchase << std::endl;
 }

@@ -6,4 +6,4 @@ set(CMAKE_CXX_STANDARD 14)
 include_directories(Include)
 
 add_executable(Self
-        Src/Main.cpp Include/Database.h Include/TravelerInfo.h Src/TravelerInfo.cpp)
+        Src/Main.cpp Include/Database.h Include/TravelerInfo.h Src/TravelerInfo.cpp Utils/Utils.cpp Src/Database.cpp)

@@ -25,6 +25,7 @@ public:
     ~TravelerInfo();
 
     void marshal(std::ofstream &out, bool isBlankRecord = false) const;
+    void unmarshal(const std::string &line);
 
     void parseString(const std::string &line);
 
