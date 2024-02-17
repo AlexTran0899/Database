@@ -134,6 +134,7 @@ void Database::writeRecord(string id, string first_name, string last_name, strin
          << setw(DATE_SIZE) << left << purchase_date.substr(0, DATE_SIZE) << endl;
 }
 
+
 bool Database::readRecord(const int record_num, string &id, string &first_name, string &last_name, 
 						 string &age, string &ticket_num, string &fare, string &purchase_date)
 {

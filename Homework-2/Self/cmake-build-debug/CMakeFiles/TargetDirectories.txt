@@ -1,0 +1,3 @@
+/Users/alexsmacbookpro/Desktop/Database/Homework-2/Self/cmake-build-debug/CMakeFiles/Self.dir
+/Users/alexsmacbookpro/Desktop/Database/Homework-2/Self/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/alexsmacbookpro/Desktop/Database/Homework-2/Self/cmake-build-debug/CMakeFiles/rebuild_cache.dir
