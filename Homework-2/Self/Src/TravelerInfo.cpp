@@ -2,7 +2,7 @@
 // Created by Alex Tran on 2/17/24.
 //
 
-#include "../Include/TravelerInfo.h"
+#include "Concrete/TravelerInfo.hpp"
 #include <sstream>
 #include <fstream>
 #include "../Utils/Utils.h"
@@ -16,12 +16,12 @@ TravelerInfo::TravelerInfo(int passengerId, const std::string &firstName, const 
 }
 
 TravelerInfo::~TravelerInfo() {
-    std::cout << "In TravelerInfo Destructor" << std::endl;
+//    std::cout << "In TravelerInfo Destructor" << std::endl;
 }
 
-void TravelerInfo::marshal(std::ofstream &out, bool isBlankRecord) const {
-    if (isBlankRecord) {
-        out << std::right << std::setw(99) << std::setfill('0') << "-1" << std::endl;
+void TravelerInfo::marshal(std::ofstream &out, bool saveBlankRecord) const {
+    if (saveBlankRecord) {
+        out << std::left << std::setw(99) << "-1" << std::endl;
         return;
     }
 
@@ -96,3 +96,7 @@ void TravelerInfo::print() const {
               << std::setw(10) << std::fixed << std::setprecision(2) << std::left << fare
               << std::setw(10) << std::left << dateOfPurchase << std::endl;
 }
+
+int  TravelerInfo::getRecordSize() const {
+    return recordSize;
+};

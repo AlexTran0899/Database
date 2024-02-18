@@ -56,26 +56,12 @@ build CMakeFiles/Self.dir/Src/Main.cpp.o: CXX_COMPILER__Self_Debug /Users/alexsm
   OBJECT_DIR = CMakeFiles/Self.dir
   OBJECT_FILE_DIR = CMakeFiles/Self.dir/Src
 
-build CMakeFiles/Self.dir/Src/TravelerInfo.cpp.o: CXX_COMPILER__Self_Debug /Users/alexsmacbookpro/Desktop/Database/Homework-2/Self/Src/TravelerInfo.cpp || cmake_object_order_depends_target_Self
-  DEP_FILE = CMakeFiles/Self.dir/Src/TravelerInfo.cpp.o.d
-  FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk -fcolor-diagnostics -std=gnu++14
-  INCLUDES = -I/Users/alexsmacbookpro/Desktop/Database/Homework-2/Self/Include
-  OBJECT_DIR = CMakeFiles/Self.dir
-  OBJECT_FILE_DIR = CMakeFiles/Self.dir/Src
-
 build CMakeFiles/Self.dir/Utils/Utils.cpp.o: CXX_COMPILER__Self_Debug /Users/alexsmacbookpro/Desktop/Database/Homework-2/Self/Utils/Utils.cpp || cmake_object_order_depends_target_Self
   DEP_FILE = CMakeFiles/Self.dir/Utils/Utils.cpp.o.d
   FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk -fcolor-diagnostics -std=gnu++14
   INCLUDES = -I/Users/alexsmacbookpro/Desktop/Database/Homework-2/Self/Include
   OBJECT_DIR = CMakeFiles/Self.dir
   OBJECT_FILE_DIR = CMakeFiles/Self.dir/Utils
-
-build CMakeFiles/Self.dir/Src/Database.cpp.o: CXX_COMPILER__Self_Debug /Users/alexsmacbookpro/Desktop/Database/Homework-2/Self/Src/Database.cpp || cmake_object_order_depends_target_Self
-  DEP_FILE = CMakeFiles/Self.dir/Src/Database.cpp.o.d
-  FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk -fcolor-diagnostics -std=gnu++14
-  INCLUDES = -I/Users/alexsmacbookpro/Desktop/Database/Homework-2/Self/Include
-  OBJECT_DIR = CMakeFiles/Self.dir
-  OBJECT_FILE_DIR = CMakeFiles/Self.dir/Src
 
 
 # =============================================================================
@@ -85,7 +71,7 @@ build CMakeFiles/Self.dir/Src/Database.cpp.o: CXX_COMPILER__Self_Debug /Users/al
 #############################################
 # Link the executable Self
 
-build Self: CXX_EXECUTABLE_LINKER__Self_Debug CMakeFiles/Self.dir/Src/Main.cpp.o CMakeFiles/Self.dir/Src/TravelerInfo.cpp.o CMakeFiles/Self.dir/Utils/Utils.cpp.o CMakeFiles/Self.dir/Src/Database.cpp.o
+build Self: CXX_EXECUTABLE_LINKER__Self_Debug CMakeFiles/Self.dir/Src/Main.cpp.o CMakeFiles/Self.dir/Utils/Utils.cpp.o
   FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk
   OBJECT_DIR = CMakeFiles/Self.dir
   POST_BUILD = :

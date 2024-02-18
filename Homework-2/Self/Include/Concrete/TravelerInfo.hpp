@@ -2,12 +2,13 @@
 // Created by Alex Tran on 2/17/24.
 //
 
-#ifndef SELF_TRAVELERINFO_H
-#define SELF_TRAVELERINFO_H
+#ifndef SELF_TRAVELERINFO_HPP
+#define SELF_TRAVELERINFO_HPP
 
 #include <iostream>
+#include "../Interfaces/IRecord.hpp"
 
-class TravelerInfo {
+class TravelerInfo: public IRecord {
 private:
     int passengerId;
     std::string firstName;
@@ -16,6 +17,7 @@ private:
     std::string ticketNum;
     double fare;
     std::string dateOfPurchase;
+    int recordSize = 100;
 public:
     TravelerInfo();
 
@@ -24,13 +26,13 @@ public:
 
     ~TravelerInfo();
 
-    void marshal(std::ofstream &out, bool isBlankRecord = false) const;
+    void marshal(std::ofstream &out, bool saveBlankRecord = false) const;
     void unmarshal(const std::string &line);
-
     void parseString(const std::string &line);
-
     void print() const;
+    int getRecordSize() const;
 };
 
+#include "../../Src/TravelerInfo.cpp"
 
-#endif //SELF_TRAVELERINFO_H
+#endif //SELF_TRAVELERINFO_HPP
