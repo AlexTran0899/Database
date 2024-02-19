@@ -3,7 +3,7 @@
 #include "Database.hpp"
 #include <fstream>
 #include <iostream>
-
+#include <unistd.h> 
 
 void travelerInfoTest();
 
@@ -25,10 +25,13 @@ void deleteRecord(Database &db, std::shared_ptr<IRecord> rec);
 
 void updateRecord(Database &db, std::shared_ptr<IRecord> rec);
 
-
 int main() {
-    travelerInfoTest();
-    databaseTest();
+//   if (chdir("./Src") != 0) {
+//       perror("chdir() to ./Src failed");
+//       return 1;
+//   }
+   travelerInfoTest();
+   databaseTest();
     std::shared_ptr<IRecord> record = DatabaseFactory::CreateTravelerInfo();
     // at some point this will be another menu allowing the user the select which database type.
     Database db(record);
@@ -179,7 +182,7 @@ void databaseTest() {
         }
 
         db.deleteRecord(13,record);
-        unsigned int temp = 0;
+        int temp = 0;
         if(!db.binarySearch(13, temp, record)) {
             std::cout << "Delete Record - success" << std::endl;
         } else {

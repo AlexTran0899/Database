@@ -1,0 +1,543 @@
+Script started on 2024-02-18 21:57:59-0600
+]0;phtran@turing: ~/database/hw2[01;32mphtran@turing[00m:[01;34m~/database/hw2[00m$ ./Self 
+** Begin of TravelerInfo Test **
+Read data from CSV text file is correct
+Write record and blank record to f_db text file is correct
+Read data from f_db text file is correct
+** End of TravelerInfo Test **
+here in the add record method
+13        John                Doe                 30        TICKET12345         299.99    2023-02-18
+Create Record - success
+13        NotJohn             Doe                 30        TICKET12345         299.99    2023-02-18
+Update Record - success
+Delete Record - success
+Database Closed 
+Close DB - success
+
+----- USER OPTIONS -----
+0: Create new database
+1: Open database
+2: Close database
+3: Display record
+4: Update record
+5: Create report
+6: Add record
+7: Delete record
+8: Read record
+-1: Quit program
+Please enter a number: 
+0
+TravelerInfo Database Created
+----- USER OPTIONS -----
+0: Create new database
+1: Open database
+2: Close database
+3: Display record
+4: Update record
+5: Create report
+6: Add record
+7: Delete record
+8: Read record
+-1: Quit program
+Please enter a number: 
+1
+TravelerInfo Database Opened
+----- USER OPTIONS -----
+0: Create new database
+1: Open database
+2: Close database
+3: Display record
+4: Update record
+5: Create report
+6: Add record
+7: Delete record
+8: Read record
+-1: Quit program
+Please enter a number: 
+3
+Display - Please enter an id number: 
+100
+-1        BLANK               BLANK               -1        BLANK               -1.00     BLANK     
+----- USER OPTIONS -----
+0: Create new database
+1: Open database
+2: Close database
+3: Display record
+4: Update record
+5: Create report
+6: Add record
+7: Delete record
+8: Read record
+-1: Quit program
+Please enter a number: 
+3
+Display - Please enter an id number: 
+2
+2         Cumings             John Bradley        38        PC 17599            71.30     1/11/1912 
+----- USER OPTIONS -----
+0: Create new database
+1: Open database
+2: Close database
+3: Display record
+4: Update record
+5: Create report
+6: Add record
+7: Delete record
+8: Read record
+-1: Quit program
+Please enter a number: 
+3
+Display - Please enter an id number: 
+3
+3         Heikkinen           Laina               26        STON/O2. 3101282    7.90      1/22/1912 
+----- USER OPTIONS -----
+0: Create new database
+1: Open database
+2: Close database
+3: Display record
+4: Update record
+5: Create report
+6: Add record
+7: Delete record
+8: Read record
+-1: Quit program
+Please enter a number: 
+3
+Display - Please enter an id number: 
+16
+16        Hewlett             Mary                55        248706              16.00     1/20/1912 
+----- USER OPTIONS -----
+0: Create new database
+1: Open database
+2: Close database
+3: Display record
+4: Update record
+5: Create report
+6: Add record
+7: Delete record
+8: Read record
+-1: Quit program
+Please enter a number: 
+3
+Display - Please enter an id number: 
+20
+20        Masselmani          Fatima              55        2649                7.20      2/20/1912 
+----- USER OPTIONS -----
+0: Create new database
+1: Open database
+2: Close database
+3: Display record
+4: Update record
+5: Create report
+6: Add record
+7: Delete record
+8: Read record
+-1: Quit program
+Please enter a number: 
+3
+Display - Please enter an id number: 
+-1
+ID should must be or larger than 0
+----- USER OPTIONS -----
+0: Create new database
+1: Open database
+2: Close database
+3: Display record
+4: Update record
+5: Create report
+6: Add record
+7: Delete record
+8: Read record
+-1: Quit program
+Please enter a number: 
+2 4
+Enter passenger ID: 2
+Enter first name: Cumings
+Enter last name: Jouh  hn Vrad    Bradly
+Enter age: 34
+Enter ticket number: PC 17588  99
+Enter fare: 71.30
+Enter date of purchase (DD/MM/YYYY): 1/11/1912
+----- USER OPTIONS -----
+0: Create new database
+1: Open database
+2: Close database
+3: Display record
+4: Update record
+5: Create report
+6: Add record
+7: Delete record
+8: Read record
+-1: Quit program
+Please enter a number: 
+3
+Display - Please enter an id number: 
+2
+2         Cumings             John Bradly         34        PC 17599            71.30     1/11/1912 
+----- USER OPTIONS -----
+0: Create new database
+1: Open database
+2: Close database
+3: Display record
+4: Update record
+5: Create report
+6: Add record
+7: Delete record
+8: Read record
+-1: Quit program
+Please enter a number: 
+3
+Display - Please enter an id number: 
+20
+20        Masselmani          Fatima              55        2649                7.20      2/20/1912 
+----- USER OPTIONS -----
+0: Create new database
+1: Open database
+2: Close database
+3: Display record
+4: Update record
+5: Create report
+6: Add record
+7: Delete record
+8: Read record
+-1: Quit program
+Please enter a number: 
+4
+Enter passenger ID: 20
+Enter first name: Masselmani
+Enter last name: Fatima
+Enter age: 55
+Enter ticket number: 2648 9
+Enter fare: 7.20
+Enter date of purchase (DD/MM/YYYY): 1 1/20/1912
+----- USER OPTIONS -----
+0: Create new database
+1: Open database
+2: Close database
+3: Display record
+4: Update record
+5: Create report
+6: Add record
+7: Delete record
+8: Read record
+-1: Quit program
+Please enter a number: 
+3
+Display - Please enter an id number: 
+20
+20        Masselmani          Fatima              55        2649                7.20      1/20/1912 
+----- USER OPTIONS -----
+0: Create new database
+1: Open database
+2: Close database
+3: Display record
+4: Update record
+5: Create report
+6: Add record
+7: Delete record
+8: Read record
+-1: Quit program
+Please enter a number: 
+7
+Delete - Please enter an id number: 
+2
+----- USER OPTIONS -----
+0: Create new database
+1: Open database
+2: Close database
+3: Display record
+4: Update record
+5: Create report
+6: Add record
+7: Delete record
+8: Read record
+-1: Quit program
+Please enter a number: 
+3
+Display - Please enter an id number: 
+2
+-1        BLANK               BLANK               -1        BLANK               -1.00     BLANK     
+----- USER OPTIONS -----
+0: Create new database
+1: Open database
+2: Close database
+3: Display record
+4: Update record
+5: Create report
+6: Add record
+7: Delete record
+8: Read record
+-1: Quit program
+Please enter a number: 
+7
+Delete - Please enter an id number: 
+12
+----- USER OPTIONS -----
+0: Create new database
+1: Open database
+2: Close database
+3: Display record
+4: Update record
+5: Create report
+6: Add record
+7: Delete record
+8: Read record
+-1: Quit program
+Please enter a number: 
+3
+Display - Please enter an id number: 
+12
+-1        BLANK               BLANK               -1        BLANK               -1.00     BLANK     
+----- USER OPTIONS -----
+0: Create new database
+1: Open database
+2: Close database
+3: Display record
+4: Update record
+5: Create report
+6: Add record
+7: Delete record
+8: Read record
+-1: Quit program
+Please enter a number: 
+7
+Delete - Please enter an id number: 
+100
+----- USER OPTIONS -----
+0: Create new database
+1: Open database
+2: Close database
+3: Display record
+4: Update record
+5: Create report
+6: Add record
+7: Delete record
+8: Read record
+-1: Quit program
+Please enter a number: 
+5
+3         Heikkinen           Laina               26        STON/O2. 3101282    7.90      1/22/1912 
+4         Futrelle            Jacques Heath       35        113803              53.10     3/23/1912 
+9         Johnson             Oscar W             27        347742              11.10     3/2/1912  
+10        Nasser              Nicholas            14        237736              30.10     2/21/1912 
+11        Sandstrom           Marguerite Rut      4         PP 9549             16.70     2/20/1912 
+16        Hewlett             Mary                55        248706              16.00     1/20/1912 
+18        Williams            Charles Eugene      55        244373              13.00     1/22/1912 
+20        Masselmani          Fatima              55        2649                7.20      1/20/1912 
+22        Beesley             Lawrence            34        248698              13.00     3/19/1912 
+23        McGowan             Anna                15        330923              8.00      3/5/1912  
+----- USER OPTIONS -----
+0: Create new database
+1: Open database
+2: Close database
+3: Display record
+4: Update record
+5: Create report
+6: Add record
+7: Delete record
+8: Read record
+-1: Quit program
+Please enter a number: 
+6
+Enter passenger ID: 100
+Enter first name: w
+Enter last name: Gauch
+Enter age: 44
+Enter ticket number: Pa 1012
+Enter fare: 43.33
+Enter date of purchase (DD/MM/YYYY): 2/5/1912
+here in the add record method
+----- USER OPTIONS -----
+0: Create new database
+1: Open database
+2: Close database
+3: Display record
+4: Update record
+5: Create report
+6: Add record
+7: Delete record
+8: Read record
+-1: Quit program
+Please enter a number: 
+3
+Display - Please enter an id number: 
+100
+100       w                   Gauch               44        Pa 1012             43.33     2/5/1912  
+----- USER OPTIONS -----
+0: Create new database
+1: Open database
+2: Close database
+3: Display record
+4: Update record
+5: Create report
+6: Add record
+7: Delete record
+8: Read record
+-1: Quit program
+Please enter a number: 
+4
+Enter passenger ID: 100
+Enter first name: Sam
+Enter last name: Gauch
+Enter age: 44  56
+Enter ticket number: Pa A 1012
+Enter fare: 43.33
+Enter date of purchase (DD/MM/YYYY): 2/5
+----- USER OPTIONS -----
+0: Create new database
+1: Open database
+2: Close database
+3: Display record
+4: Update record
+5: Create report
+6: Add record
+7: Delete record
+8: Read record
+-1: Quit program
+Please enter a number: 
+4
+Enter passenger ID: 100
+Enter first name: Sam
+Enter last name: Gauch
+Enter age: 44
+Enter ticket number: Pa A 1012
+Enter fare: 43.33
+Enter date of purchase (DD/MM/YYYY): 2/5/1912
+----- USER OPTIONS -----
+0: Create new database
+1: Open database
+2: Close database
+3: Display record
+4: Update record
+5: Create report
+6: Add record
+7: Delete record
+8: Read record
+-1: Quit program
+Please enter a number: 
+3
+Display - Please enter an id number: 
+100
+100       Sam                 Gauch               44        PA 1012             43.33     2/5/1912  
+----- USER OPTIONS -----
+0: Create new database
+1: Open database
+2: Close database
+3: Display record
+4: Update record
+5: Create report
+6: Add record
+7: Delete record
+8: Read record
+-1: Quit program
+Please enter a number: 
+6
+Enter passenger ID: 1
+Enter first name: Tim
+Enter last name: Cook
+Enter age: 74
+Enter ticket number: PA 1018
+Enter fare: 23.33
+Enter date of purchase (DD/MM/YYYY): 3/5/1912
+here in the add record method
+----- USER OPTIONS -----
+0: Create new database
+1: Open database
+2: Close database
+3: Display record
+4: Update record
+5: Create report
+6: Add record
+7: Delete record
+8: Read record
+-1: Quit program
+Please enter a number: 
+3
+Display - Please enter an id number: 
+1
+1         Tim                 Cook                74        PA 1018             23.33     3/5/1912  
+----- USER OPTIONS -----
+0: Create new database
+1: Open database
+2: Close database
+3: Display record
+4: Update record
+5: Create report
+6: Add record
+7: Delete record
+8: Read record
+-1: Quit program
+Please enter a number: 
+4 4
+Enter passenger ID: 1
+Enter first name: Tim
+Enter last name: Cook
+Enter age: 46
+Enter ticket number: Pa A 1018
+Enter fare: 23.33
+Enter date of purchase (DD/MM/YYYY): 3/5/1912
+----- USER OPTIONS -----
+0: Create new database
+1: Open database
+2: Close database
+3: Display record
+4: Update record
+5: Create report
+6: Add record
+7: Delete record
+8: Read record
+-1: Quit program
+Please enter a number: 
+3
+Display - Please enter an id number: 
+1
+1         Tim                 Cook                46        PA 1018             23.33     3/5/1912  
+----- USER OPTIONS -----
+0: Create new database
+1: Open database
+2: Close database
+3: Display record
+4: Update record
+5: Create report
+6: Add record
+7: Delete record
+8: Read record
+-1: Quit program
+Please enter a number: 
+2
+Database Closed 
+----- USER OPTIONS -----
+0: Create new database
+1: Open database
+2: Close database
+3: Display record
+4: Update record
+5: Create report
+6: Add record
+7: Delete record
+8: Read record
+-1: Quit program
+Please enter a number: 
+3
+Display - Please enter an id number: 
+2
+Unable to display record, database currently closed
+----- USER OPTIONS -----
+0: Create new database
+1: Open database
+2: Close database
+3: Display record
+4: Update record
+5: Create report
+6: Add record
+7: Delete record
+8: Read record
+-1: Quit program
+Please enter a number: 
+-1
+Database Closed 
+have a good day, and a good life, goodbye :)
+]0;phtran@turing: ~/database/hw2[01;32mphtran@turing[00m:[01;34m~/database/hw2[00m$ exit
+exit
+
+Script done on 2024-02-18 22:05:40-0600

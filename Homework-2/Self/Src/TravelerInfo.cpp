@@ -3,6 +3,8 @@
 //
 
 #include "Concrete/TravelerInfo.hpp"
+#include <iomanip>
+#include <memory>
 #include <sstream>
 #include <fstream>
 #include "../Utils/Utils.h"

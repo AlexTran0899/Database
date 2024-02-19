@@ -90,14 +90,14 @@ bool Database::create(std::string &filename) {
     return true;
 };
 
-bool Database::readRecord(unsigned int recordNum, std::shared_ptr<IRecord> rec) {
+bool Database::readRecord(int recordNum, std::shared_ptr<IRecord> rec) {
     if(!isOpen()) {
         std::cerr << "Unable to read record, database currently closed" << std::endl;
         return false;
     }
 
     rec->clear();
-    if ((0 <= recordNum) && (recordNum < totalEntries))
+    if ((0 <= recordNum) && (recordNum <= totalEntries))
     {
         f_db.seekg(recordNum * recordSize, std::ios::beg);
         std::string line;
@@ -107,7 +107,7 @@ bool Database::readRecord(unsigned int recordNum, std::shared_ptr<IRecord> rec) 
             return true;
         }
     } else {
-        std::cerr << "Record out of range" << std::endl;
+        std::cerr << "Record out of range: " << recordNum << std::endl;
     }
     return false;
 }
@@ -119,27 +119,35 @@ void Database::close() {
     std::cout << "Database Closed " << std::endl;
 }
 
-void Database::displayRecord(unsigned int id, std::shared_ptr<IRecord> rec) {
+void Database::displayRecord(int id, std::shared_ptr<IRecord> rec) {
     if(!isOpen()) {
         std::cerr << "Unable to display record, database currently closed" << std::endl;
         return;
     }
-    unsigned int entriesNumber = 0;
+
+    if(id < 0) {
+        std::cerr << "ID should must be or larger than 0" << std::endl;
+        return;
+    }
+
+    int entriesNumber = 0;
     binarySearch(id, entriesNumber,rec);
     rec->print();
 }
 
-bool Database::binarySearch(unsigned int id, unsigned int &entriesNumber, std::shared_ptr<IRecord> rec) {
-    unsigned int l = 0;
-    unsigned int r = totalEntries;
+bool Database::binarySearch(int id, int &entriesNumber, std::shared_ptr<IRecord> rec) {
+    int l = 0;
+    int r = totalEntries;
 
     while (l <= r) {
-        unsigned int mid = l + (r - l) / 2;
-        unsigned int temp = mid;
+        int mid = l + (r - l) / 2;
+        int temp = mid;
 
         // assuming our entire database isn't filled with empty record
-        while(!readRecord(temp, rec)){
+        int counter = 20;
+        while(!readRecord(temp, rec) && counter > 0){
             temp += 1;
+            counter -=1;
         }
 
         if (rec->getID() == id) {
@@ -157,13 +165,13 @@ bool Database::binarySearch(unsigned int id, unsigned int &entriesNumber, std::s
     return false;
 }
 
-bool Database::deleteRecord(unsigned int id, std::shared_ptr<IRecord> rec) {
+bool Database::deleteRecord(int id, std::shared_ptr<IRecord> rec) {
     if(!isOpen()) {
         std::cerr << "Unable to delete record, database currently closed" << std::endl;
         return false;
     }
 
-    unsigned int entriesNumber = 0;
+    int entriesNumber = 0;
     binarySearch(id, entriesNumber, rec);
     f_db.seekg(entriesNumber * recordSize, std::ios::beg);
     rec->marshal(f_db, true);
@@ -174,7 +182,7 @@ bool Database::updateRecord(const IRecord &rec) {
         std::cerr << "Unable to update record, database currently closed" << std::endl;
         return false;
     }
-    unsigned int entriesNumber;
+    int entriesNumber;
     bool founded = binarySearch(rec.getID(), entriesNumber, record);
 
     if(founded){
@@ -192,7 +200,7 @@ bool Database::addRecord(const IRecord &rec) {
         std::cerr << "Unable to add record, database currently closed" << std::endl;
         return false;
     }
-    unsigned int entriesNumber;
+    int entriesNumber;
     bool founded = binarySearch(rec.getID(), entriesNumber, record);
 
     if(!founded){

@@ -3,6 +3,7 @@
 //
 
 #include "Utils.h"
+#include <algorithm>
 
 std::string Utils::replaceSpacesWithUnderScore(const std::string& s) {
     std::string result = s;
