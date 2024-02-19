@@ -6,7 +6,7 @@
 #define SELF_TRAVELERINFO_HPP
 
 #include <iostream>
-#include "../Interfaces/IRecord.hpp"
+#include "../Interface/IRecord.hpp"
 
 class TravelerInfo: public IRecord {
 private:
@@ -26,11 +26,14 @@ public:
 
     ~TravelerInfo();
 
-    void marshal(std::ofstream &out, bool saveBlankRecord = false) const;
+    unsigned int getID() const;
+    void clear();
+    void marshal(std::ostream &out, bool saveBlankRecord = false) const;
     void unmarshal(const std::string &line);
     void parseString(const std::string &line);
     void print() const;
     int getRecordSize() const;
+    void getUserInput();
 };
 
 #include "../../Src/TravelerInfo.cpp"

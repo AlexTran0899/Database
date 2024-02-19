@@ -141,12 +141,12 @@
 		},
 		{
 			"backtrace" : 1,
-			"path" : "Include/Interfaces/IRecord.hpp",
+			"path" : "Include/Interface/IRecord.hpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
-			"path" : "Include/Interfaces/Record.hpp",
+			"path" : "Include/Factory/DatabaseFactory.hpp",
 			"sourceGroupIndex" : 0
 		}
 	],

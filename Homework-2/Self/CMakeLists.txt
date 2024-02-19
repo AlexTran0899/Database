@@ -10,4 +10,6 @@ add_executable(Self
         Include/Concrete/TravelerInfo.hpp
         Src/Main.cpp
         Utils/Utils.cpp
-        Include/Interfaces/IRecord.hpp Include/Interfaces/Record.hpp)
+        Include/Interface/IRecord.hpp
+        Include/Factory/DatabaseFactory.hpp
+        Include/Factory/DatabaseFactory.hpp)

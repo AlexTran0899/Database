@@ -15,11 +15,14 @@ private:
 public:
     virtual ~IRecord() {}
 
-    virtual void marshal(std::ofstream &out, bool saveBlankRecord = false) const = 0;
+    virtual void marshal(std::ostream &out, bool saveBlankRecord = false) const = 0;
     virtual void unmarshal(const std::string &line) = 0;
     virtual void parseString(const std::string &line) = 0;
     virtual void print() const = 0;
     virtual int getRecordSize() const = 0;
+    virtual void clear() = 0;
+    virtual unsigned int getID() const = 0;
+    virtual void getUserInput() = 0;
 };
 
 

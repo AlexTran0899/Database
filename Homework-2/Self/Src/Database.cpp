@@ -7,12 +7,12 @@
 #include <fstream>
 
 
-Database::Database() {
+Database::Database(std::shared_ptr<IRecord> record) {
     recordCount = 0;
     totalEntries = 0;
     recordSize = 0;
+    this->record = std::move(record);
 }
-
 
 bool Database::open(std::string &filename) {
     if (f_db.is_open()) {
@@ -45,7 +45,7 @@ bool Database::open(std::string &filename) {
 
 
 
-bool Database::isOpen() {
+bool Database::isOpen() const {
     return f_db.is_open();
 }
 
@@ -53,7 +53,7 @@ bool Database::isOpen() {
 Database::~Database() {}
 
 
-bool Database::create(std::string &filename,IRecord &r) {
+bool Database::create(std::string &filename) {
     std::ifstream f_csv("../Data/" + filename + ".csv");
     std::ofstream f_db("../Data/" + filename + ".data");
     std::ofstream f_config("../Data/" + filename + ".config");
@@ -75,14 +75,14 @@ bool Database::create(std::string &filename,IRecord &r) {
 
     std::string line;
     while (std::getline(f_csv, line)) {
-        r.parseString(line);
-        r.marshal(f_db);
-        r.marshal(f_db, true);
+        record->parseString(line);
+        record->marshal(f_db, true);
+        record->marshal(f_db);
         recordCount += 1;
     }
     totalEntries += recordCount * 2;
 
-    f_config << recordCount << std::setw(20) << totalEntries << std::setw(20) << r.getRecordSize() << std::endl;
+    f_config << recordCount << std::setw(20) << totalEntries << std::setw(20) << record->getRecordSize() << std::endl;
 
     f_csv.close();
     f_db.close();
@@ -90,49 +90,139 @@ bool Database::create(std::string &filename,IRecord &r) {
     return true;
 };
 
-bool Database::readRecord(unsigned int recordNum, IRecord &r) {
+bool Database::readRecord(unsigned int recordNum, std::shared_ptr<IRecord> rec) {
     if(!isOpen()) {
         std::cerr << "Unable to read record, database currently closed" << std::endl;
         return false;
     }
 
-    if ((0 <= recordNum) && (recordNum <= totalEntries))
+    rec->clear();
+    if ((0 <= recordNum) && (recordNum < totalEntries))
     {
         f_db.seekg(recordNum * recordSize, std::ios::beg);
         std::string line;
         getline(f_db, line);
-        if(!isBlankRecord(line)) {
-            r.unmarshal(line);
+        if(!Utils::isBlankRecord(line)) {
+            rec->unmarshal(line);
+            return true;
         }
     } else {
         std::cerr << "Record out of range" << std::endl;
-        return false;
     }
-    return true;
+    return false;
 }
 
-bool Database::isBlankRecord(const std::string &line) {
-    return stoi(line) == -1;
-}
 
 void Database::close() {
+    record = nullptr;
     f_db.close();
     std::cout << "Database Closed " << std::endl;
 }
 
-void Database::displayRecord(IRecord &r) {
+void Database::displayRecord(unsigned int id, std::shared_ptr<IRecord> rec) {
     if(!isOpen()) {
-        std::cerr << "Unable to read record, database currently closed" << std::endl;
+        std::cerr << "Unable to display record, database currently closed" << std::endl;
         return;
     }
+    unsigned int entriesNumber = 0;
+    binarySearch(id, entriesNumber,rec);
+    rec->print();
+}
 
-    f_db.seekg(std::ios::beg);
-    std::string line;
+bool Database::binarySearch(unsigned int id, unsigned int &entriesNumber, std::shared_ptr<IRecord> rec) {
+    unsigned int l = 0;
+    unsigned int r = totalEntries;
 
-    while(getline(f_db, line)) {
-        if(isBlankRecord(line)) continue;
-        r.unmarshal(line);
-        r.print();
+    while (l <= r) {
+        unsigned int mid = l + (r - l) / 2;
+        unsigned int temp = mid;
+
+        // assuming our entire database isn't filled with empty record
+        while(!readRecord(temp, rec)){
+            temp += 1;
+        }
+
+        if (rec->getID() == id) {
+            entriesNumber = temp;
+            return true;
+        } else if (rec->getID() > id) {
+            r = mid - 1;
+        } else {
+            l = mid + 1;
+        }
+    }
+
+    entriesNumber = l;
+    rec->clear();
+    return false;
+}
+
+bool Database::deleteRecord(unsigned int id, std::shared_ptr<IRecord> rec) {
+    if(!isOpen()) {
+        std::cerr << "Unable to delete record, database currently closed" << std::endl;
+        return false;
+    }
+
+    unsigned int entriesNumber = 0;
+    binarySearch(id, entriesNumber, rec);
+    f_db.seekg(entriesNumber * recordSize, std::ios::beg);
+    rec->marshal(f_db, true);
+}
+
+bool Database::updateRecord(const IRecord &rec) {
+    if(!isOpen()) {
+        std::cerr << "Unable to update record, database currently closed" << std::endl;
+        return false;
+    }
+    unsigned int entriesNumber;
+    bool founded = binarySearch(rec.getID(), entriesNumber, record);
+
+    if(founded){
+        f_db.seekg(entriesNumber * recordSize, std::ios::beg);
+        rec.marshal(f_db);
+        return true;
+    } else {
+        std::cerr << "Unable to update record, record not found" << std::endl;
+    }
+    return false;
+}
+
+bool Database::addRecord(const IRecord &rec) {
+    if(!isOpen()) {
+        std::cerr << "Unable to add record, database currently closed" << std::endl;
+        return false;
+    }
+    unsigned int entriesNumber;
+    bool founded = binarySearch(rec.getID(), entriesNumber, record);
+
+    if(!founded){
+        f_db.seekg(entriesNumber * recordSize, std::ios::beg);
+        std::cout << "here in the add record method" << std::endl;
+
+        rec.marshal(f_db);
+    } else {
+        std::cerr << "Entry with ID: " + std::to_string(rec.getID()) + " already exist in DB" << std::endl;
+        record->print();
     }
 }
 
+bool Database::createReport(std::shared_ptr<IRecord> rec) {
+    if(!isOpen()) {
+        std::cerr << "Unable to create report, database currently closed" << std::endl;
+        return false;
+    }
+
+    f_db.seekg(0, std::ios::beg);
+    std::string line;
+
+    int counter = 10;
+
+    while(std::getline(f_db,line) && counter > 0){
+        if(Utils::isBlankRecord(line)) continue;
+        counter -= 1;
+        rec->unmarshal(line);
+        rec->print();
+    }
+
+    return counter == 0;
+}

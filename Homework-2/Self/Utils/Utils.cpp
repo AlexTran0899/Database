@@ -15,3 +15,7 @@ std::string Utils::replaceUnderScoreWithSpaces(const std::string& s) {
     std::replace(result.begin(), result.end(), '_', ' ');
     return result;
 }
+
+bool Utils::isBlankRecord(const std::string &line) {
+    return stoi(line) == -1;
+}
