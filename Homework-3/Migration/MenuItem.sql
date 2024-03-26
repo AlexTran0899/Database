@@ -1,0 +1,9 @@
+CREATE TABLE MenuItem(
+itemNo INTEGER PRIMARY KEY,
+restaurantNo INTEGER NOT NULL,
+dishNo INTEGER,
+price DECIMAL(4,2) NOT NULL,
+FOREIGN KEY (restaurantNo) REFERENCES Restaurant(restaurantID) ON DELETE RESTRICT,
+FOREIGN KEY (dishNo) REFERENCES Dish(dishNo) ON DELETE SET NULL,
+CONSTRAINT price_range CHECK (price >= 5 AND price <= 50)
+);
