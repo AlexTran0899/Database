@@ -1,0 +1,12 @@
+{
+  "name": "homework-4",
+  "scripts": {
+    "dev": "nodemon --exec 'make' --watch src/* ",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "nodemon": "^3.1.0"
+  }
+}
