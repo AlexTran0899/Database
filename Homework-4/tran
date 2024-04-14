@@ -1,0 +1,340 @@
+Script started on 2024-04-14 13:30:10-0500
+groups: cannot find name for group ID 762800513
+]0;phtran@turing: ~/Database/Homework-4[01;32mphtran@turing[00m:[01;34m~/Database/Homework-4[00m$ exit./compileandruncpp.sh 
+echo "Creating and filling tables from HW3 solution..."
+Creating and filling tables from HW3 solution...
+./hw3_soln.sh
+Tables_in_phtran
+Dish
+FoodOrder
+MenuItem
+Restaurant
+
+echo "Compiling..."
+Compiling...
+ g++ -Wall -I /usr/include/cppconn odbc_example.cpp -L /usr/lib -l mysqlcppconn -o odbc_example.exe
+
+echo "Running..."
+Running...
+./odbc_example.exe
+ 1: Find all available menu items at a given restaurant
+ 2: Order an available menu item from a particular restaurant
+ 3: List all food orders for a particular restaurant
+ 4: Cancel a food order
+ 5: Add a new dish for a restaurant
+-1: Quit
+Please enter a number: 1
+Find all dishes at a particular restaurant
+---------------------------------
+Query: 
+SELECT * FROM Restaurant
+
+Result: 
+restaurantNo,  restaurantName,  type,  city
+0,  Tasty Thai,  Asian,  Dallas
+3,  Eureka Pizza,  Pizza,  Fayetteville
+5,  Tasty Thai,  Asian,  Las Vegas
+Please enter the restaurant name
+Eureka Pizaa za   za
+Please enter the restaurant city
+Fayetteville
+SELECT d.dishName, m.price FROM Restaurant as r JOIN MenuItem as m ON r.restaurantNo = m.restaurantNo JOIN Dish as d ON m.dishNo = d.dishNo WHERE r.restaurantName = 'Eureka Pizza' AND r.city = 'Fayetteville';---------------------------------
+Query: 
+SELECT d.dishName, m.price FROM Restaurant as r JOIN MenuItem as m ON r.restaurantNo = m.restaurantNo JOIN Dish as d ON m.dishNo = d.dishNo WHERE r.restaurantName = 'Eureka Pizza' AND r.city = 'Fayetteville';
+
+Result: 
+dishName,  price
+Salad,  6.25
+Garlic Bread,  5.50
+Cheese Pizza,  12.50
+Pepperoni Pizza,  13.50
+ 1: Find all available menu items at a given restaurant
+ 2: Order an available menu item from a particular restaurant
+ 3: List all food orders for a particular restaurant
+ 4: Cancel a food order
+ 5: Add a new dish for a restaurant
+-1: Quit
+Please enter a number: 1
+Find all dishes at a particular restaurant
+---------------------------------
+Query: 
+SELECT * FROM Restaurant
+
+Result: 
+restaurantNo,  restaurantName,  type,  city
+0,  Tasty Thai,  Asian,  Dallas
+3,  Eureka Pizza,  Pizza,  Fayetteville
+5,  Tasty Thai,  Asian,  Las Vegas
+Please enter the restaurant name
+Slim  s Chiken   ckie   ken
+Please enter the restaurant city
+Rogers
+SELECT d.dishName, m.price FROM Restaurant as r JOIN MenuItem as m ON r.restaurantNo = m.restaurantNo JOIN Dish as d ON m.dishNo = d.dishNo WHERE r.restaurantName = 'Slims Chicken' AND r.city = 'Rogers';---------------------------------
+Query: 
+SELECT d.dishName, m.price FROM Restaurant as r JOIN MenuItem as m ON r.restaurantNo = m.restaurantNo JOIN Dish as d ON m.dishNo = d.dishNo WHERE r.restaurantName = 'Slims Chicken' AND r.city = 'Rogers';
+
+Result: 
+no dish founded for this restaurant :(
+ 1: Find all available menu items at a given restaurant
+ 2: Order an available menu item from a particular restaurant
+ 3: List all food orders for a particular restaurant
+ 4: Cancel a food order
+ 5: Add a new dish for a restaurant
+-1: Quit
+Please enter a number: 2
+---------------------------------
+Query: 
+SELECT * FROM Dish 
+
+Result: 
+dishNo,  dishName,  type
+1,  Spring Rolls,  ap
+2,  Pad Thai,  en
+3,  Pot Stickers,  ap
+4,  Masaman Curry,  en
+5,  Custard,  ds
+6,  Garlic Bread,  ap
+7,  Salad,  ap
+8,  Cheese Pizza,  en
+9,  Pepperoni Pizza,  en
+10,  Veggie Supreme Pizza,  en
+Please enter a dish name
+Sprn ings    Rolls
+Spring Rolls---------------------------------
+Query: 
+SELECT itemNo, restaurantName, city, price FROM MenuItem as m NATURAL JOIN Dish LEFT JOIN Restaurant as r ON r.restaurantNo = m.restaurantNo  WHERE dishName = 'Spring Rolls'
+
+Result: 
+itemNo,  restaurantName,  city,  price
+1,  Tasty Thai,  Dallas,  8.00
+10,  Tasty Thai,  Las Vegas,  6.00
+Please enter an item number
+10
+INSERT into FoodOrder(itemNo, date, time) values ('10','2024-4-14','13:31')
+---------------------------------
+Query: 
+SELECT * FROM FoodOrder
+
+Result: 
+orderNo,  itemNo,  date,  time
+1,  3,  2024-03-01,  10:30:00
+2,  2,  2024-03-02,  15:33:00
+3,  4,  2024-03-01,  15:35:00
+4,  6,  2024-03-03,  21:00:00
+5,  8,  2024-03-01,  18:11:00
+6,  8,  2024-03-04,  18:51:00
+7,  10,  2024-03-01,  19:00:00
+8,  12,  2024-03-05,  17:15:00
+9,  12,  2024-04-01,  12:10:00
+10,  10,  2024-04-14,  13:31:00
+
+ 1: Find all available menu items at a given restaurant
+ 2: Order an available menu item from a particular restaurant
+ 3: List all food orders for a particular restaurant
+ 4: Cancel a food order
+ 5: Add a new dish for a restaurant
+-1: Quit
+Please enter a number: 2
+---------------------------------
+Query: 
+SELECT * FROM Dish 
+
+Result: 
+dishNo,  dishName,  type
+1,  Spring Rolls,  ap
+2,  Pad Thai,  en
+3,  Pot Stickers,  ap
+4,  Masaman Curry,  en
+5,  Custard,  ds
+6,  Garlic Bread,  ap
+7,  Salad,  ap
+8,  Cheese Pizza,  en
+9,  Pepperoni Pizza,  en
+10,  Veggie Supreme Pizza,  en
+Please enter a dish name
+Classic Meal
+Classic Meal---------------------------------
+Query: 
+SELECT itemNo, restaurantName, city, price FROM MenuItem as m NATURAL JOIN Dish LEFT JOIN Restaurant as r ON r.restaurantNo = m.restaurantNo  WHERE dishName = 'Classic Meal'
+
+Result: 
+dish not found :(
+ 1: Find all available menu items at a given restaurant
+ 2: Order an available menu item from a particular restaurant
+ 3: List all food orders for a particular restaurant
+ 4: Cancel a food order
+ 5: Add a new dish for a restaurant
+-1: Quit
+Please enter a number: 3
+---------------------------------
+Query: 
+SELECT * FROM Restaurant
+
+Result: 
+restaurantNo,  restaurantName,  type,  city
+0,  Tasty Thai,  Asian,  Dallas
+3,  Eureka Pizza,  Pizza,  Fayetteville
+5,  Tasty Thai,  Asian,  Las Vegas
+Please enter the restaurant name
+Eureka Pizza  
+Please enter the restaurant city
+Fauye   yetteville
+---------------------------------
+Query: 
+SELECT Dish.dishName, MenuItem.price, FoodOrder.date, FoodOrder.time FROM FoodOrder INNER JOIN MenuItem ON FoodOrder.itemNo = MenuItem.itemNo INNER JOIN Dish ON MenuItem.dishNo = Dish.dishNo INNER JOIN Restaurant ON MenuItem.restaurantNo = Restaurant.restaurantNo WHERE restaurantName = 'Eureka Pizza' AND city = 'Fayetteville'
+
+Result: 
+dishName,  price,  date,  time
+Salad,  6.25,  2024-03-03,  21:00:00
+Cheese Pizza,  12.50,  2024-03-01,  18:11:00
+Cheese Pizza,  12.50,  2024-03-04,  18:51:00
+ 1: Find all available menu items at a given restaurant
+ 2: Order an available menu item from a particular restaurant
+ 3: List all food orders for a particular restaurant
+ 4: Cancel a food order
+ 5: Add a new dish for a restaurant
+-1: Quit
+Please enter a number: 3
+---------------------------------
+Query: 
+SELECT * FROM Restaurant
+
+Result: 
+restaurantNo,  restaurantName,  type,  city
+0,  Tasty Thai,  Asian,  Dallas
+3,  Eureka Pizza,  Pizza,  Fayetteville
+5,  Tasty Thai,  Asian,  Las Vegas
+Please enter the restaurant name
+Eureka Pizza
+Please enter the restaurant city
+Bentonville
+---------------------------------
+Query: 
+SELECT Dish.dishName, MenuItem.price, FoodOrder.date, FoodOrder.time FROM FoodOrder INNER JOIN MenuItem ON FoodOrder.itemNo = MenuItem.itemNo INNER JOIN Dish ON MenuItem.dishNo = Dish.dishNo INNER JOIN Restaurant ON MenuItem.restaurantNo = Restaurant.restaurantNo WHERE restaurantName = 'Eureka Pizza' AND city = 'Bentonville'
+
+Result: 
+no order founded :(
+ 1: Find all available menu items at a given restaurant
+ 2: Order an available menu item from a particular restaurant
+ 3: List all food orders for a particular restaurant
+ 4: Cancel a food order
+ 5: Add a new dish for a restaurant
+-1: Quit
+Please enter a number: 4
+---------------------------------
+Query: 
+SELECT f.orderNo, d.dishName, r.restaurantName, f.date, f.time FROM FoodOrder as f JOIN MenuItem as m ON f.itemNo = m.itemNo JOIN Dish as d ON m.dishNo = d.dishNo JOIN Restaurant as r ON m.restaurantNo = r.restaurantNo
+
+Result: 
+orderNo,  dishName,  restaurantName,  date,  time
+1,  Salad,  Tasty Thai,  2024-03-01,  10:30:00
+2,  Pot Stickers,  Tasty Thai,  2024-03-02,  15:33:00
+3,  Pad Thai,  Tasty Thai,  2024-03-01,  15:35:00
+4,  Salad,  Eureka Pizza,  2024-03-03,  21:00:00
+5,  Cheese Pizza,  Eureka Pizza,  2024-03-01,  18:11:00
+6,  Cheese Pizza,  Eureka Pizza,  2024-03-04,  18:51:00
+7,  Spring Rolls,  Tasty Thai,  2024-03-01,  19:00:00
+8,  Masaman Curry,  Tasty Thai,  2024-03-05,  17:15:00
+9,  Masaman Curry,  Tasty Thai,  2024-04-01,  12:10:00
+10,  Spring Rolls,  Tasty Thai,  2024-04-14,  13:31:00
+
+Please enter an order number to cancel
+7
+---------------------------------
+Query: 
+SELECT f.orderNo, d.dishName, r.restaurantName, f.date, f.time FROM FoodOrder as f JOIN MenuItem as m ON f.itemNo = m.itemNo JOIN Dish as d ON m.dishNo = d.dishNo JOIN Restaurant as r ON m.restaurantNo = r.restaurantNo
+
+Result: 
+orderNo,  dishName,  restaurantName,  date,  time
+1,  Salad,  Tasty Thai,  2024-03-01,  10:30:00
+2,  Pot Stickers,  Tasty Thai,  2024-03-02,  15:33:00
+3,  Pad Thai,  Tasty Thai,  2024-03-01,  15:35:00
+4,  Salad,  Eureka Pizza,  2024-03-03,  21:00:00
+5,  Cheese Pizza,  Eureka Pizza,  2024-03-01,  18:11:00
+6,  Cheese Pizza,  Eureka Pizza,  2024-03-04,  18:51:00
+8,  Masaman Curry,  Tasty Thai,  2024-03-05,  17:15:00
+9,  Masaman Curry,  Tasty Thai,  2024-04-01,  12:10:00
+10,  Spring Rolls,  Tasty Thai,  2024-04-14,  13:31:00
+
+ 1: Find all available menu items at a given restaurant
+ 2: Order an available menu item from a particular restaurant
+ 3: List all food orders for a particular restaurant
+ 4: Cancel a food order
+ 5: Add a new dish for a restaurant
+-1: Quit
+Please enter a number: 5
+Find all dishes at a particular restaurant
+---------------------------------
+Query: 
+SELECT * FROM Restaurant
+
+Result: 
+restaurantNo,  restaurantName,  type,  city
+0,  Tasty Thai,  Asian,  Dallas
+3,  Eureka Pizza,  Pizza,  Fayetteville
+5,  Tasty Thai,  Asian,  Las Vegas
+Please enter the restaurant name
+T Tasty Thai
+Please enter the restaurant city
+Dallas
+SELECT d.dishName, m.price FROM Restaurant as r JOIN MenuItem as m ON r.restaurantNo = m.restaurantNo JOIN Dish as d ON m.dishNo = d.dishNo WHERE r.restaurantName = 'Tasty Thai' AND r.city = 'Dallas';---------------------------------
+Query: 
+SELECT d.dishName, m.price FROM Restaurant as r JOIN MenuItem as m ON r.restaurantNo = m.restaurantNo JOIN Dish as d ON m.dishNo = d.dishNo WHERE r.restaurantName = 'Tasty Thai' AND r.city = 'Dallas';
+
+Result: 
+dishName,  price
+Spring Rolls,  8.00
+Pot Stickers,  9.00
+Salad,  10.00
+Pad Thai,  19.00
+Masaman Curry,  19.00
+add a new dish to a restaurant
+Please enter the dish name
+Pasta Shrimp
+Please enter the dish type(en, ap, ds)
+en
+Please enter the dish price: 
+9 8.99
+INSERT into Dish(dishName, type) values ('Pasta Shrimp','en')
+INSERT into MenuItem(restaurantNo, dishNo, price) values (0,'11','8.99')
+Find all dishes at a particular restaurant
+---------------------------------
+Query: 
+SELECT * FROM Restaurant
+
+Result: 
+restaurantNo,  restaurantName,  type,  city
+0,  Tasty Thai,  Asian,  Dallas
+3,  Eureka Pizza,  Pizza,  Fayetteville
+5,  Tasty Thai,  Asian,  Las Vegas
+Please enter the restaurant name
+Tasty Thai
+Please enter the restaurant city
+Dallas
+SELECT d.dishName, m.price FROM Restaurant as r JOIN MenuItem as m ON r.restaurantNo = m.restaurantNo JOIN Dish as d ON m.dishNo = d.dishNo WHERE r.restaurantName = 'Tasty Thai' AND r.city = 'Dallas';---------------------------------
+Query: 
+SELECT d.dishName, m.price FROM Restaurant as r JOIN MenuItem as m ON r.restaurantNo = m.restaurantNo JOIN Dish as d ON m.dishNo = d.dishNo WHERE r.restaurantName = 'Tasty Thai' AND r.city = 'Dallas';
+
+Result: 
+dishName,  price
+Spring Rolls,  8.00
+Pot Stickers,  9.00
+Salad,  10.00
+Pad Thai,  19.00
+Masaman Curry,  19.00
+Pasta Shrimp,  8.99
+ 1: Find all available menu items at a given restaurant
+ 2: Order an available menu item from a particular restaurant
+ 3: List all food orders for a particular restaurant
+ 4: Cancel a food order
+ 5: Add a new dish for a restaurant
+-1: Quit
+Please enter a number: 6 -1
+unknown command
+
+Testing select:
+
+]0;phtran@turing: ~/Database/Homework-4[01;32mphtran@turing[00m:[01;34m~/Database/Homework-4[00m$ exit
+exit
+
+Script done on 2024-04-14 13:33:21-0500
